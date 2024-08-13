@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.testng.annotations.AfterClass;
+
 import com.altius.crm.fileutility.FileUtility;
 import com.mysql.jdbc.Driver;
 
@@ -26,6 +28,12 @@ public class DbUtilityClass {
 		conn=DriverManager.getConnection(url,un,pwd);
 		
 		
+	}
+	@AfterClass
+	
+	public void closeDbConnection() throws SQLException
+	{
+		conn.close();
 	}
 	
 	public boolean isDataPresentInDB(String query,String expData,int colIndex) throws SQLException, IOException
